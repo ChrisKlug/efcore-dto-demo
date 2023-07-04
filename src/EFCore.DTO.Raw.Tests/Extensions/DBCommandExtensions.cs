@@ -40,7 +40,7 @@ public static class DBCommandExtensions
                                   $"INSERT INTO People (Id, FirstName, LastName) VALUES ({owner.Id},'{owner.FirstName}','{owner.LastName}');" +
                                   "SET IDENTITY_INSERT Vehicles OFF;";
                 await cmd.ExecuteNonQueryAsync();
-                cmd.CommandText = $"INSERT INTO VehicleOwners (VehicleId, PersonId, [From], [To]) VALUES ({id},{owner.Id},'{owner.From}',{(owner.To == null ? "null" : $"'{owner.To}'")})";
+                cmd.CommandText = $"INSERT INTO VehicleOwners (VehicleId, PersonId, [From], [To]) VALUES ({id},{owner.Id},'{owner.From:yyyyMMdd}',{(owner.To == null ? "null" : $"'{owner.To?.ToString("yyyyMMdd")}'")})";
                 await cmd.ExecuteNonQueryAsync();
             }
         }
