@@ -1,5 +1,6 @@
 ﻿using EFCore.Domain.VehicleManagement;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
 
 namespace EFCore.Domain.Data;
 

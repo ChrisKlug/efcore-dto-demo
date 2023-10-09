@@ -4,6 +4,7 @@ using EFCore.Domain.Data;
 using EFCore.Domain.VehicleManagement.DTOs;
 using EFCore.Domain.VehicleManagement.Exceptions;
 using EFCore.Domain.VehicleManagement.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace EFCore.Domain;
 
@@ -79,17 +80,44 @@ public class VehicleService
         }
 
         var vehicle = await context.VehicleWithVIN(v!, true);
-        if (vehicle == null)
+        //if (vehicle == null)
+        //{
+        //    return ServiceResult.Fail<OwnerDTO>(new VehicleNotFoundException());
+        //}
+
+        //if (vehicle.CurrentOwner == null)
+        //{
+        //    return ServiceResult.Fail<OwnerDTO>(new OwnerNotFoundException());
+        //}
+
+        //return ServiceResult.Success(vehicle.CurrentOwner.ToModel());
+
+        //var owner = await context.Set<Vehicle>().IgnoreAutoIncludes()
+        //                        .Where(x => x.VIN == v!)
+        //                        .Select(x => x.CurrentOwner).FirstOrDefaultAsync();
+
+        //if (owner == null)
+        //{
+        //    return ServiceResult.Fail<OwnerDTO>(new OwnerNotFoundException());
+        //}
+
+        //return ServiceResult.Success(owner.ToModel());
+
+        var vehicleProjection = await context.Set<Vehicle>()
+                                .Where(x => x.VIN == v!)
+                                .Select(x => new { Vin = x.VIN, Owner = x.CurrentOwner }).FirstOrDefaultAsync();
+
+        if (vehicleProjection == null)
         {
             return ServiceResult.Fail<OwnerDTO>(new VehicleNotFoundException());
         }
 
-        if (vehicle.CurrentOwner == null)
+        if (vehicleProjection.Owner == null)
         {
             return ServiceResult.Fail<OwnerDTO>(new OwnerNotFoundException());
         }
 
-        return ServiceResult.Success(vehicle.CurrentOwner.ToModel());
+        return ServiceResult.Success(vehicleProjection.Owner.ToModel());
     }
 
     public async Task<ServiceResult<OwnerDTO>> SetCurrentOwner(string vin, int personId)
