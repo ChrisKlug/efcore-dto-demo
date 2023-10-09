@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>Add EF Core migration</Title>
+			<Author>Chris Klug</Author>
+			<Shortcut>efmigration</Shortcut>
+        </Header>
+        <Snippet>
+			<Code Language="CSharp">
+                <![CDATA[[Migration("$SequenceNr$_$MigrationName$")]
+[DbContext(typeof($DbContext$))]
+public class $MigrationName$ : Migration
+{
+    protected override void Up(MigrationBuilder migrationBuilder)
+    {
+        $end$
+    }
+
+    protected override void Down(MigrationBuilder migrationBuilder)
+    {
+        
+    }
+}
+]]>
+            </Code>
+			<Declarations>
+				<Literal>
+					<ID>SequenceNr</ID>
+					<ToolTip>The sequence number to use for the migration</ToolTip>
+					<Default>XXXXXXX</Default>
+				</Literal>
+				<Literal>
+					<ID>MigrationName</ID>
+					<ToolTip>The name of the migration</ToolTip>
+					<Default>MyMigration</Default>
+				</Literal>
+				<Literal>
+					<ID>DbContext</ID>
+					<ToolTip>The DbContext to "attach" the migration to</ToolTip>
+					<Default>MyDbContext</Default>
+				</Literal>
+			</Declarations>
+			<Imports>
+				<Import>
+					<Namespace>Microsoft.EntityFrameworkCore.Infrastructure</Namespace>
+				</Import>
+				<Import>
+					<Namespace>Microsoft.EntityFrameworkCore.Migrations</Namespace>
+				</Import>
+			</Imports>
+        </Snippet>
+    </CodeSnippet>
+</CodeSnippets>
