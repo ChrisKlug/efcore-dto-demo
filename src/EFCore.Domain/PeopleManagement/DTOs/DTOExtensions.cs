@@ -3,7 +3,7 @@
 public static class DTOExtensions
 {
     public static PersonDTO ToModel(this Person person)
-        => new PersonDTO(-1, person.Name.FirstName, person.Name.LastName,
+        => new PersonDTO(((IHaveId<int>)person).Id, person.FirstName, person.LastName,
                          person.DeliveryAddress?.ToModel(),
                          person.InvoiceAddress?.ToModel());
     public static AddressDTO ToModel(this Address address)

@@ -1,6 +1,6 @@
 ﻿namespace EFCore.Domain.PeopleManagement;
 
-public class Person
+public class Person : IHaveId<int>
 {
     private int id;
     private List<Address> addresses = new List<Address>();
@@ -56,4 +56,6 @@ public class Person
         => addresses.OfType<DeliveryAddress>().FirstOrDefault(x => x.IsCurrent);
     public Address? InvoiceAddress
         => addresses.OfType<InvoiceAddress>().FirstOrDefault(x => x.IsCurrent);
+
+    int IHaveId<int>.Id => id;
 }
