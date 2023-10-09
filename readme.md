@@ -19,7 +19,7 @@ __Comment:__ Running them as part of the startup might seem like a good idea. Bu
 To generate the SQL scripts, just run
 
 ```bash
-dotnet ef migrations script --idempotent --context MigrationContext --output ./migrations.sql
+dotnet ef migrations script --idempotent --output ./migrations.sql
 ```
 
 in the directory that contains the project that has the context to be migrated, and the migrations.
@@ -45,7 +45,7 @@ In the talk, I also cover the new migration bundle feature in EF Core. This allo
 To generate the bundles, you just run
 
 ```bash
-dotnet ef migrations bundle --context MigrationContext --output ./migrations.exe
+dotnet ef migrations bundle --output ./migrations.exe
 ```
 
 in the directory that contains the project that has the context to be migrated, and the migrations.
