@@ -14,7 +14,7 @@ public static class VehicleManagementContextExtensions
             query = query.AsNoTracking();
         }
 
-        return query.SingleOrDefaultAsync(x => x.VIN == vin);
+        return query.FirstOrDefaultAsync(x => x.VIN == vin);
     }
     public static Task<Vehicle?> VehicleWithId(this DemoContext context, int id, bool asNoTracking = false)
     {
@@ -25,7 +25,7 @@ public static class VehicleManagementContextExtensions
             query = query.AsNoTracking();
         }
 
-        return query.SingleOrDefaultAsync(x => EF.Property<int>(x, "Id") == id);
+        return query.FirstOrDefaultAsync(x => EF.Property<int>(x, "Id") == id);
     }
 
     public static Task<Person?> PersonWithId(this DemoContext context, int id, bool asNoTracking = false)
@@ -37,6 +37,6 @@ public static class VehicleManagementContextExtensions
             query = query.AsNoTracking();
         }
 
-        return query.SingleOrDefaultAsync(x => x.Id == id);
+        return query.FirstOrDefaultAsync(x => x.Id == id);
     }
 }
