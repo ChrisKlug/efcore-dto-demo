@@ -150,8 +150,8 @@ public class VehicleServiceTests : TestBase
 
                         var owner = result.Result!.Owner;
                         Assert.Equal(2, owner.Id);
-                        Assert.Equal("John", owner.FirstName);
-                        Assert.Equal("Doe", owner.LastName);
+                        Assert.Equal("John", owner.Name.FirstName);
+                        Assert.Equal("Doe", owner.Name.LastName);
                         Assert.Equal(DateTime.Today.AddYears(-10), owner.From);
                         Assert.Null(owner.To);
 
@@ -182,14 +182,14 @@ public class VehicleServiceTests : TestBase
 
                         var previousOwners = result.Result!.PreviousOwners;
                         Assert.Equal(1, previousOwners[0].Id);
-                        Assert.Equal("Lisa", previousOwners[0].FirstName);
-                        Assert.Equal("Doe", previousOwners[0].LastName);
+                        Assert.Equal("Lisa", previousOwners[0].Name.FirstName);
+                        Assert.Equal("Doe", previousOwners[0].Name.LastName);
                         Assert.Equal(DateTime.Today.AddYears(-15), previousOwners[0].From);
                         Assert.Equal(DateTime.Today.AddYears(-12), previousOwners[0].To);
 
                         Assert.Equal(2, previousOwners[1].Id);
-                        Assert.Equal("Jane", previousOwners[1].FirstName);
-                        Assert.Equal("Doe", previousOwners[1].LastName);
+                        Assert.Equal("Jane", previousOwners[1].Name.FirstName);
+                        Assert.Equal("Doe", previousOwners[1].Name.LastName);
                         Assert.Equal(DateTime.Today.AddYears(-12), previousOwners[1].From);
                         Assert.Equal(DateTime.Today.AddYears(-10), previousOwners[1].To);
                     }
@@ -234,8 +234,8 @@ public class VehicleServiceTests : TestBase
 
                         var owner = result.Result!.Owner;
                         Assert.Equal(2, owner.Id);
-                        Assert.Equal("John", owner.FirstName);
-                        Assert.Equal("Doe", owner.LastName);
+                        Assert.Equal("John", owner.Name.FirstName);
+                        Assert.Equal("Doe", owner.Name.LastName);
                         Assert.Equal(DateTime.Today.AddYears(-10), owner.From);
                         Assert.Null(owner.To);
 
@@ -266,14 +266,14 @@ public class VehicleServiceTests : TestBase
 
                         var previousOwners = result.Result!.PreviousOwners;
                         Assert.Equal(1, previousOwners[0].Id);
-                        Assert.Equal("Lisa", previousOwners[0].FirstName);
-                        Assert.Equal("Doe", previousOwners[0].LastName);
+                        Assert.Equal("Lisa", previousOwners[0].Name.FirstName);
+                        Assert.Equal("Doe", previousOwners[0].Name.LastName);
                         Assert.Equal(DateTime.Today.AddYears(-15), previousOwners[0].From);
                         Assert.Equal(DateTime.Today.AddYears(-12), previousOwners[0].To);
 
                         Assert.Equal(2, previousOwners[1].Id);
-                        Assert.Equal("Jane", previousOwners[1].FirstName);
-                        Assert.Equal("Doe", previousOwners[1].LastName);
+                        Assert.Equal("Jane", previousOwners[1].Name.FirstName);
+                        Assert.Equal("Doe", previousOwners[1].Name.LastName);
                         Assert.Equal(DateTime.Today.AddYears(-12), previousOwners[1].From);
                         Assert.Equal(DateTime.Today.AddYears(-10), previousOwners[1].To);
                     }
@@ -313,8 +313,8 @@ public class VehicleServiceTests : TestBase
 
                         Assert.NotNull(result);
                         Assert.True(result.IsSuccess);
-                        Assert.Equal("John", result.Result!.FirstName);
-                        Assert.Equal("Doe", result.Result!.LastName);
+                        Assert.Equal("John", result.Result!.Name.FirstName);
+                        Assert.Equal("Doe", result.Result!.Name.LastName);
                         Assert.Equal(DateTime.Today.AddYears(-8), result.Result!.From);
                         Assert.Null(result.Result!.To);
                     }
@@ -448,8 +448,8 @@ public class VehicleServiceTests : TestBase
                         Assert.NotNull(result);
                         Assert.True(result.IsSuccess);
                         Assert.Equal(7, result.Result!.Id);
-                        Assert.Equal("John", result.Result!.FirstName);
-                        Assert.Equal("Doe", result.Result!.LastName);
+                        Assert.Equal("John", result.Result!.Name.FirstName);
+                        Assert.Equal("Doe", result.Result!.Name.LastName);
                         Assert.Equal(DateTime.Today, result.Result!.From);
                         Assert.Null(result.Result!.To);
                     },

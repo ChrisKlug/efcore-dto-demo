@@ -2,8 +2,8 @@
 
 namespace EFCore.DTO.Wrapper.Models;
 
-public record VehicleOwnerDTO(int Id, string FirstName, string LastName, DateTime From, DateTime? To)
+public record VehicleOwnerDTO(int Id, NameDTO Name, DateTime From, DateTime? To)
 {
     public static VehicleOwnerDTO Create(Owner owner)
-        => new VehicleOwnerDTO(owner.Id, owner.FirstName, owner.LastName, owner.From, owner.To);
+        => new VehicleOwnerDTO(owner.Id, new NameDTO(owner.FirstName, owner.LastName), owner.From, owner.To);
 }

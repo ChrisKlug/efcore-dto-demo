@@ -110,5 +110,3 @@ public class Person
 
     public static explicit operator Data.Models.Person(Person person) => person.person;
 }
-
-public record Name(string FirstName, string LastName);

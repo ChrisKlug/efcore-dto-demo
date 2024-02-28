@@ -30,8 +30,8 @@ public class PersonServiceTests : TestBase
                         Assert.NotNull(result);
                         Assert.True(result.IsSuccess);
                         Assert.Equal(1, result.Result!.Id);
-                        Assert.Equal("John", result.Result!.FirstName);
-                        Assert.Equal("Doe", result.Result!.LastName);
+                        Assert.Equal("John", result.Result!.Name.FirstName);
+                        Assert.Equal("Doe", result.Result!.Name.LastName);
                         Assert.Null(result.Result!.InvoiceAddress);
                         Assert.NotNull(result.Result!.DeliveryAddress);
                         var address = result.Result!.DeliveryAddress!;
