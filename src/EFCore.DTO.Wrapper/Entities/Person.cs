@@ -5,6 +5,7 @@ public class Person
     private readonly Data.Models.Person person;
     private Address? deliveryAddress;
     private Address? invoiceAddress;
+    private Name? name;
 
     private Person(Data.Models.Person person)
     {
@@ -91,10 +92,23 @@ public class Person
     }
 
     public int Id => person.Id;
-    public string FirstName => person.FirstName;
-    public string LastName => person.LastName;
+
+    public Name Name
+    {
+        get
+        {
+            if (name is null)
+            {
+                name = new Name(person.FirstName, person.LastName);
+            }
+
+            return name;
+        }        
+    }
     public Address? DeliveryAddress => deliveryAddress;
     public Address? InvoiceAddress => invoiceAddress;
 
     public static explicit operator Data.Models.Person(Person person) => person.person;
 }
+
+public record Name(string FirstName, string LastName);
