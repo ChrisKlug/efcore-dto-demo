@@ -15,8 +15,7 @@ public class Owner
     public void EndOwnership() => To = DateTime.Today;
 
     public int Id => person.Id;
-    public string FirstName => person.FirstName;
-    public string LastName => person.LastName;
+    public Name Name => person.Name;
     public DateTime From { get; private set; } = DateTime.Today;
     public DateTime? To { get; private set; }
 }

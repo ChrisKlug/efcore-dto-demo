@@ -1,6 +1,8 @@
 ﻿namespace EFCore.Domain.PeopleManagement.DTOs;
 
-public record PersonDTO(int Id, string FirstName, string LastName, AddressDTO? DeliveryAddress, AddressDTO? InvoiceAddress) { }
+public record PersonDTO(int Id, NameDTO Name, AddressDTO? DeliveryAddress, AddressDTO? InvoiceAddress);
 
-public record AddressDTO(string Type, string AddressLine1, string? AddressLine2, string PostalCode, string City, string Country, bool IsCurrent) { }
+public record NameDTO(string FirstName, string LastName);
+
+public record AddressDTO(string Type, string AddressLine1, string? AddressLine2, string PostalCode, string City, string Country, bool IsCurrent);
 

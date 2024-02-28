@@ -1,4 +1,7 @@
 ﻿namespace EFCore.Domain.VehicleManagement.DTOs;
 
 public record VehicleDTO(string VIN, OwnerDTO? Owner, OwnerDTO[] PreviousOwners);
-public record OwnerDTO(int Id, string FirstName, string LastName, DateTime From, DateTime? To);
+
+public record NameDTO(string FirstName, string LastName);
+
+public record OwnerDTO(int Id, NameDTO Name, DateTime From, DateTime? To);

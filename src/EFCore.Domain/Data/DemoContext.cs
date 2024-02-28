@@ -46,8 +46,7 @@ public class DemoContext : DbContext
             x.Navigation("person").AutoInclude();
 
             x.Ignore(x => x.Id);
-            x.Ignore(x => x.FirstName);
-            x.Ignore(x => x.LastName);
+            x.Ignore(x => x.Name);
 
             x.HasKey("VehicleId", "PersonId");
         });
@@ -56,8 +55,11 @@ public class DemoContext : DbContext
         {
             x.ToTable("People");
 
-            x.Property(x => x.FirstName).HasColumnName("FirstName");
-            x.Property(x => x.LastName).HasColumnName("LastName");
+            x.ComplexProperty(x => x.Name, y =>
+            {
+                y.Property(z => z.FirstName).HasColumnName("FirstName");
+                y.Property(z => z.LastName).HasColumnName("LastName");
+            });
 
             x.HasKey(x => x.Id);
         });

@@ -8,5 +8,8 @@ public static class DTOExtensions
                             vehicle.PreviousOwners.OrderBy(x => x.To).Select(x => x.ToModel()).ToArray());
 
     public static OwnerDTO ToModel(this Owner owner)
-        => new OwnerDTO(owner.Id, owner.FirstName, owner.LastName, owner.From, owner.To);
+        => new OwnerDTO(owner.Id, owner.Name.ToModel(), owner.From, owner.To);
+    
+    public static NameDTO ToModel(this Name name)
+        => new NameDTO(name.FirstName, name.LastName);
 }

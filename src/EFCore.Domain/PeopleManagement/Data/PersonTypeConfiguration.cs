@@ -15,8 +15,11 @@ public class PersonTypeConfiguration : IEntityTypeConfiguration<Person>
         builder.HasMany<Address>("addresses").WithOne().HasForeignKey("PersonId").IsRequired();
         builder.Navigation("addresses").AutoInclude();
 
-        builder.Property(x => x.FirstName).HasColumnName("FirstName");
-        builder.Property(x => x.LastName).HasColumnName("LastName");
+        builder.ComplexProperty(x => x.Name, x =>
+        {
+            x.Property(y => y.FirstName).HasColumnName("FirstName");
+            x.Property(y => y.LastName).HasColumnName("LastName");
+        });
 
         builder.Ignore(x => x.DeliveryAddress);
         builder.Ignore(x => x.InvoiceAddress);
