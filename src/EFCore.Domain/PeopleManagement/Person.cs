@@ -7,7 +7,7 @@ public class Person
     private Person() { }
 
     public static Person Create(string firstName, string lastName)
-        => new Person { FirstName = firstName, LastName = lastName };
+        => new Person { Name = new Name(firstName, lastName) };
 
     public Address[] GetAllAddresses() => addresses.ToArray();
     public Address SetDeliveryAddress(string addressLine1,
@@ -51,8 +51,7 @@ public class Person
         return newAddress;
     }
 
-    public string FirstName { get; private set; } = string.Empty;
-    public string LastName { get; private set; } = string.Empty;
+    public Name Name { get; set; }
     public Address? DeliveryAddress
         => addresses.OfType<DeliveryAddress>().FirstOrDefault(x => x.IsCurrent);
     public Address? InvoiceAddress

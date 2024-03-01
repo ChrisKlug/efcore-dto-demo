@@ -12,6 +12,9 @@ public class DemoContext : DbContext
     //{
     //    base.OnConfiguring(optionsBuilder);
     //    optionsBuilder.LogTo(str => Debug.WriteLine(str));
+    //    optionsBuilder.UseSqlServer(options => {
+    //        options.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
+    //    });
     //}
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
