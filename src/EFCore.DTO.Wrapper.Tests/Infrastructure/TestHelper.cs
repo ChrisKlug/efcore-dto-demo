@@ -1,5 +1,6 @@
 ﻿using EFCore.DTO.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 
 namespace EFCore.DTO.Wrapper.Tests.Infrastructure;
@@ -9,6 +10,7 @@ internal class TestHelper
     public static VehicleRegistryContext GetContext()
     {
         var options = new DbContextOptionsBuilder<VehicleRegistryContext>()
+                            .ConfigureWarnings(w => w.Ignore(RelationalEventId.PendingModelChangesWarning))
                             .UseSqlServer(GetConnectionString());
         return new VehicleRegistryContext(options.Options);
     }
